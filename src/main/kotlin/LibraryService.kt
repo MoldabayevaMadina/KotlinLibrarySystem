@@ -2,7 +2,7 @@ package org.example
 
 import kotlinx.coroutines.delay
 
-class LibraryService1 {
+class LibraryService {
 
     private val items: MutableList<LibraryItem> = mutableListOf()
 
@@ -38,19 +38,19 @@ class LibraryService1 {
         }.toSet()
     }
 
-    fun getTotalBookPrice(): Double {
+    fun getTotalPages(): Int {
         val books = items.filterIsInstance<Book>()
 
         if (books.isEmpty()) {
-            return 0.0
+            return 0
         }
 
         return books
             .map { book ->
-                book.price
+                book.pages
             }
-            .reduce { total, price ->
-                total + price
+            .reduce { total, pages ->
+                total + pages
             }
     }
 
