@@ -12,13 +12,6 @@ class LibraryService {
         items.add(item)
     }
 
-    fun addUser(user: User) {
-        users[user.id] = user
-    }
-
-    fun getAllItems(): List<LibraryItem> {
-        return items
-    }
 
     fun getAvailableItems(): List<LibraryItem> {
         return items.filter { item ->
@@ -54,23 +47,21 @@ class LibraryService {
             }
     }
 
-    fun borrowItem(itemId: Int, userId: Int): BorrowResult {
+    fun borrowItem(itemId: Int, user: User): BorrowResult {
         val item = items.find { item ->
             item.id == itemId
         }
 
-        val user = users[userId]
-
         if (item == null) {
-            return BorrowResult.Error("Item with id $itemId was not found.")
-        }
-
-        if (user == null) {
-            return BorrowResult.Error("User with id $userId was not found.")
+            return BorrowResult.Error(
+                "Item with id $itemId was not found."
+            )
         }
 
         if (!item.isAvailable) {
-            return BorrowResult.Error("${item.title} is already borrowed.")
+            return BorrowResult.Error(
+                "${item.title} is already borrowed."
+            )
         }
 
         item.borrow()

@@ -76,8 +76,8 @@ fun main() = runBlocking {
     library.addItem(book3)
     library.addItem(book4)
     library.addItem(book5)
-    library.addItem(book6)
     library.addItem(magazine1)
+    library.addItem(book6)
     library.addItem(magazine2)
 
 
@@ -96,7 +96,7 @@ fun main() = runBlocking {
 
         print("Choose an option: ")
 
-        val choice = readLine()
+        val choice = readlnOrNull()
 
         when (choice) {
 
@@ -124,7 +124,7 @@ fun main() = runBlocking {
                 println()
 
                 print("Enter your name: ")
-                val name = readLine()?.trim()
+                val name = readlnOrNull()?.trim()
 
                 if (name.isNullOrEmpty()) {
                     println("Name cannot be empty.")
@@ -140,7 +140,7 @@ fun main() = runBlocking {
                     }
 
                     print("Enter item id: ")
-                    val itemId = readLine()?.toIntOrNull()
+                    val itemId = readlnOrNull()?.toIntOrNull()
 
                     if (itemId == null) {
                         println("Invalid item id.")
@@ -150,7 +150,7 @@ fun main() = runBlocking {
 
                         val result = library.borrowItem(
                             itemId = itemId,
-                            userId = user.id
+                            user = user
                         )
 
                         when (result) {
