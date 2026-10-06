@@ -19,11 +19,6 @@ class LibraryService {
         }
     }
 
-    fun getItemTitles(): List<String> {
-        return items.map { item ->
-            item.title
-        }
-    }
 
     fun getCategories(): Set<String> {
         return items.map { item ->
